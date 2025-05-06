@@ -1,0 +1,24 @@
+mkdir crud-api
+cd crud-api
+
+
+npm init -y
+
+npm install express mongoose body-parser cors
+
+
+If local: run mongod in terminal
+
+
+node server.js
+
+
+Use Postman or browser:
+
+POST http://localhost:3000/users
+
+GET http://localhost:3000/users
+
+PUT http://localhost:3000/users/:id
+
+DELETE http://localhost:3000/users/:id
