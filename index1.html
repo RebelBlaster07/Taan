@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Shop</title>
+  <style>
+    * .cart {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .cart.active {
+      display: block;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .close-cart {
+      text-align: right;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Mini Shop</div>
+    <div class="cart-icon" onclick="toggleCart()">🛒 <span class="cart-count">0</span></div>
+  </header>
+
+  <div class="products">
+    <div class="product">
+      <img src="https://images-cdn.ubuy.co.in/6745b9befd73671ea921367f-two-seater-funny-t-shirt-mens-funny.jpg"
+        alt="T-shirt">
+      <h3>T-shirt</h3>
+      <p class="price">$19.99</p>
+      <button onclick="addToCart('T-shirt', 19.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/b6b6036a0a2c436ba5543f30348533f8_9366/STEP_N_PACE_SHOES_Black_IQ9157_01_standard.jpg"
+        alt="Jeans">
+      <h3>Jeans</h3>
+      <p class="price">$49.99</p>
+      <button onclick="addToCart('Jeans', 49.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://www.thealternate.in/cdn/shop/files/DSC05760.jpg?v=1685033257" alt="Sneakers">
+      <h3>Sneakers</h3>
+      <p class="price">$79.99</p>
+      <button onclick="addToCart('Sneakers', 79.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://images-cdn.ubuy.co.in/6745b9befd73671ea921367f-two-seater-funny-t-shirt-mens-funny.jpg"
+        alt="T-shirt">
+      <h3>T-shirt</h3>
+      <p class="price">$19.99</p>
+      <button onclick="addToCart('T-shirt', 19.99)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/b6b6036a0a2c436ba5543f30348533f8_9366/STEP_N_PACE_SHOES_Black_IQ9157_01_standard.jpg"
+        alt="Jeans">
+      <h3>Jeans</h3>
+      <p class="price">$49.99</p>
+      <button onclick="addToCart('Jeans', 49.99)">Add to Cart</button>
+    </div>
+
+  </div>
+
+  <div class="cart" id="cart">
+    <div class="close-cart" onclick="toggleCart()">✕</div>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total">Total: $<span id="total">0</span></div>
+    <button onclick="alert('Checkout functionality would go here')">Checkout</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartCount = document.querySelector('.cart-count');
+      const total = document.getElementById('total');
+
+      cartItems.innerHTML = '';
+      let totalPrice = 0;
+
+      cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <span>${item.name}</span>
+          <span>$${item.price}</span>
+        `;
+        cartItems.appendChild(cartItem);
+        totalPrice += item.price;
+      });
+
+      cartCount.textContent = cart.length;
+      total.textContent = totalPrice.toFixed(2);
+    }
+
+    function toggleCart() {
+      document.getElementById('cart').classList.toggle('active');
+    }
+  </script>
+</body>
+
+</html>
