@@ -1,0 +1,19 @@
+| Task                  | Command Example                       |
+| --------------------- | ------------------------------------- |
+| Build Image           | docker build -t myapp .             |
+| Run Container         | docker run -p 3000:3000 myapp       |
+| List Containers       | docker ps -a                        |
+| Stop/Remove Container | docker stop <id> / docker rm <id> |
+| Create Volume         | docker volume create mydata         |
+| Use Volume            | -v mydata:/path/in/container        |
+
+
+| Task                     | Command                       |
+| ------------------------ | ----------------------------- |
+| Clone Repo               | git clone <URL>             |
+| Stage All Changes        | git add .                   |
+| Commit Changes           | git commit -m "message"     |
+| Create Branch            | git checkout -b branch-name |
+| Switch Branch            | git checkout branch-name    |
+| Push Branch to GitHub    | git push origin branch-name |
+| Pull Updates from GitHub | git pull origin branch-name |
