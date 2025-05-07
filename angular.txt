@@ -1,0 +1,110 @@
+user-registration-app/
+├── src/
+│   ├── app/
+│   │   ├── register/
+│   │   │   ├── register.component.ts
+│   │   │   ├── register.component.html
+│   │   │   └── register.component.css
+│   │   ├── app.component.ts
+│   │   ├── app.component.html
+│   │   └── app.module.ts
+│   └── index.html
+├── angular.json
+├── package.json
+└── ...
+
+=============================================
+1. register.component.ts
+ts
+Copy
+Edit
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
+export class RegisterComponent {
+  user = {
+    name: '',
+    email: '',
+    password: ''
+  };
+
+  registerUser() {
+    localStorage.setItem('user', JSON.stringify(this.user));
+    alert('User Registered Successfully!');
+  }
+}
+============================================
+📄 2. register.component.html
+html
+Copy
+Edit
+<div class="container mt-5">
+  <h2>User Registration</h2>
+  <form (ngSubmit)="registerUser()">
+    <input type="text" class="form-control my-2" placeholder="Name" [(ngModel)]="user.name" name="name" required />
+    <input type="email" class="form-control my-2" placeholder="Email" [(ngModel)]="user.email" name="email" required />
+    <input type="password" class="form-control my-2" placeholder="Password" [(ngModel)]="user.password" name="password" required />
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+========================================================================
+📄 3. register.component.css
+css
+Copy
+Edit
+.container {
+  max-width: 400px;
+}
+===========================================================================
+📄 4. app.module.ts
+ts
+Copy
+Edit
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+import { RegisterComponent } from './register/register.component';
+
+@NgModule({
+  declarations: [AppComponent, RegisterComponent],
+  imports: [BrowserModule, FormsModule],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+=========================================================
+📄 5. app.component.html
+html
+Copy
+Edit
+<app-register></app-register>
+================================================
+📄 6. app.component.ts (default)
+ts
+Copy
+Edit
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
+export class AppComponent {}
+=====================================================
+🛠 Commands to Set Up and Run
+bash
+Copy
+Edit
+npm install -g @angular/cli
+ng new user-registration-app
+cd user-registration-app
+ng generate component register
+# Replace files with above code
+ng serve
+Now, open http://localhost:4200 and test your app!
